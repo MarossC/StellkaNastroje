@@ -54,12 +54,9 @@ def setHeight(fHeight):
         f.write(newdata)
         f.close()
 
+# - - - - Inputy
 
-# - - - - Cele okna
-
-setWidth(9999)
-setHeight(9999)
-
+# - - Cele okna
 while True:
     inputCele = input("Pocet celych oken: ")
     if inputCele == "":
@@ -70,17 +67,7 @@ while True:
     except ValueError:
         print("Zkus to znova, nezadal jsi cislo.\n")
 
-while pocetCele > 0:
-    subprocess.Popen([gameexe])
-    pocetCele = pocetCele - 1
-
-time.sleep(3) # mehehe jdu spat zmrde
-print("\n")
-
-# - - - - Polovicni okno
-
-setWidth(s_width / 2)
-setHeight(s_height - 80)
+# - - Polovicni okna
 
 while True:
     inputPulka = input("Pocet polovicnich oken: ")
@@ -92,16 +79,7 @@ while True:
     except ValueError:
         print("Zkus to znova, nezadal jsi cislo.\n")
 
-while pocetPulka > 0:
-    subprocess.Popen([gameexe])
-    pocetPulka = pocetPulka - 1
-
-time.sleep(3) # mehehe jdu spat zmrde
-print("\n")
-
-# - - - - Normalni Kopacske okno
-
-setHeight((s_height - 110) / 2)
+# - - Normal kopaci okna
 
 while True:
     inputMining = input("Pocet normal kopacich oken: ")
@@ -113,17 +91,7 @@ while True:
     except ValueError:
         print("Zkus to znova, nezadal jsi cislo.\n")
 
-while pocetMining > 0:
-    subprocess.Popen([gameexe])
-    pocetMining = pocetMining - 1
-
-time.sleep(3) # mehehe jdu spat zmrde
-print("\n")
-
-# - - - - Micro Kopacske okno
-
-setWidth(s_width / 4)
-setHeight((s_height - 90) / 2)
+# - - Mikro kopaci okna
 
 while True:
     inputMicro = input("Pocet mikro kopacich oken: ")
@@ -134,6 +102,47 @@ while True:
         break
     except ValueError:
         print("Zkus to znova, nezadal jsi cislo.\n")
+
+# - - - - Otevirani
+
+print("Pockej nez se otevrou okna.")
+
+# - - Cele okna
+
+setWidth(9999)
+setHeight(9999)
+
+while pocetCele > 0:
+    subprocess.Popen([gameexe])
+    pocetCele = pocetCele - 1
+
+time.sleep(3)
+
+# - - Polovicni okno
+
+setWidth(s_width / 2)
+setHeight(s_height - 80)
+
+while pocetPulka > 0:
+    subprocess.Popen([gameexe])
+    pocetPulka = pocetPulka - 1
+
+time.sleep(3)
+
+# - - Normalni Kopacske okno
+
+setHeight((s_height - 110) / 2)
+
+while pocetMining > 0:
+    subprocess.Popen([gameexe])
+    pocetMining = pocetMining - 1
+
+time.sleep(3)
+
+# - - Micro Kopacske okno
+
+setWidth(s_width / 4)
+setHeight((s_height - 90) / 2)
 
 while pocetMicro > 0:
     subprocess.Popen([gameexe])
