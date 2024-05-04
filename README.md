@@ -14,7 +14,7 @@
 
 ### **[Aukční Discord; Aukcionáři](https://discord.gg/Kv2hFrTwCs)**
 ---
-## Nastoje:
+## Nastroje:
 
 ### **Otevirac; Maross**
 ##### 1. Stahnout [zde](Otevirac/otevirac.py). (pomoci tohoto tlacitka v pravo nahore: <img width="83" alt="Stahnout" src="https://github.com/MarossC/StellkaNastroje/assets/96071677/13c23b80-fe23-4854-878d-b13e84856cde">)
