@@ -58,7 +58,7 @@ def setHeight(fHeight):
 
 # - - Cele okna
 while True:
-    inputCele = input("Pocet celych oken: ")
+    inputCele = input("Pocet celych oken (100%/100%): ")
     if inputCele == "":
         inputCele = 0
     try:
@@ -67,10 +67,22 @@ while True:
     except ValueError:
         print("Zkus to znova, nezadal jsi cislo.\n")
 
+# - - Trictvrtecni okna
+
+while True:
+    inputTrictvrt = input("Pocet trictvrtecnich oken (100%/75%): ")
+    if inputTrictvrt == "":
+        inputTrictvrt = 0
+    try:
+        pocetTrictvrt = int(inputTrictvrt)
+        break
+    except ValueError:
+        print("Zkus to znova, nezadal jsi cislo.\n")
+
 # - - Polovicni okna
 
 while True:
-    inputPulka = input("Pocet polovicnich oken: ")
+    inputPulka = input("Pocet polovicnich oken (100%/50%): ")
     if inputPulka == "":
         inputPulka = 0
     try:
@@ -82,7 +94,7 @@ while True:
 # - - Normal kopaci okna
 
 while True:
-    inputMining = input("Pocet normal kopacich oken: ")
+    inputMining = input("Pocet normal kopacich oken (50%/50%): ")
     if inputMining == "":
         inputMining = 0
     try:
@@ -94,7 +106,7 @@ while True:
 # - - Mikro kopaci okna
 
 while True:
-    inputMicro = input("Pocet mikro kopacich oken: ")
+    inputMicro = input("Pocet malych kopacich oken (50%/25%): ")
     if inputMicro == "":
         inputMicro = 0
     try:
@@ -115,6 +127,17 @@ if pocetCele > 0:
     while pocetCele > 0:
         subprocess.Popen([gameexe])
         pocetCele = pocetCele - 1
+
+    time.sleep(8)
+
+# - - Trictvrtecni okna
+if pocetTrictvrt > 0:
+    setWidth(round(s_width * 0.75))
+    setHeight(s_height - 80)
+
+    while pocetTrictvrt > 0:
+        subprocess.Popen([gameexe])
+        pocetTrictvrt = pocetTrictvrt - 1
 
     time.sleep(8)
 
