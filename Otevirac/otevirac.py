@@ -108,45 +108,45 @@ while True:
 print("Pockej nez se otevrou okna.")
 
 # - - Cele okna
+if pocetCele > 0:
+    setWidth(9999)
+    setHeight(9999)
 
-setWidth(9999)
-setHeight(9999)
+    while pocetCele > 0:
+        subprocess.Popen([gameexe])
+        pocetCele = pocetCele - 1
 
-while pocetCele > 0:
-    subprocess.Popen([gameexe])
-    pocetCele = pocetCele - 1
-
-time.sleep(3)
+    time.sleep(8)
 
 # - - Polovicni okno
+if pocetPulka > 0:
+    setWidth(s_width / 2)
+    setHeight(s_height - 80)
 
-setWidth(s_width / 2)
-setHeight(s_height - 80)
+    while pocetPulka > 0:
+        subprocess.Popen([gameexe])
+        pocetPulka = pocetPulka - 1
 
-while pocetPulka > 0:
-    subprocess.Popen([gameexe])
-    pocetPulka = pocetPulka - 1
-
-time.sleep(3)
+    time.sleep(8)
 
 # - - Normalni Kopacske okno
+if pocetMining > 0:
+    setHeight((s_height - 110) / 2)
 
-setHeight((s_height - 110) / 2)
+    while pocetMining > 0:
+        subprocess.Popen([gameexe])
+        pocetMining = pocetMining - 1
 
-while pocetMining > 0:
-    subprocess.Popen([gameexe])
-    pocetMining = pocetMining - 1
-
-time.sleep(3)
+    time.sleep(8)
 
 # - - Micro Kopacske okno
-
-setWidth(s_width / 4)
-setHeight((s_height - 90) / 2)
-
-while pocetMicro > 0:
-    subprocess.Popen([gameexe])
-    pocetMicro = pocetMicro - 1
+if pocetMicro > 0:
+    setWidth(s_width / 4)
+    setHeight((s_height - 90) / 2)
+    
+    while pocetMicro > 0:
+        subprocess.Popen([gameexe])
+        pocetMicro = pocetMicro - 1
 
 print("\n")
 print("####################")
