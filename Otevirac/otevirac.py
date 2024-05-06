@@ -154,6 +154,7 @@ if pocetPulka > 0:
 
 # - - Normalni Kopacske okno
 if pocetMining > 0:
+    setWidth(s_width / 2)
     setHeight((s_height - 110) / 2)
 
     while pocetMining > 0:
