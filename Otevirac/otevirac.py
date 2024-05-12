@@ -7,6 +7,7 @@ import sys
 from ctypes import windll
 
 
+
 try:
     is_admin = ctypes.windll.shell32.IsUserAnAdmin()
 except:
@@ -60,12 +61,11 @@ def setHeight(fHeight):
         f.close()
 
 # - - - - Windows 10/11 detekce
-
 wmic = interpreter("wmic os get name")
 wmicos = wmic.split("\n")
 version = wmicos[1].split(" ")
 
-if version[2] == 11:
+if version[2] == "11":
     IsWinEleven = True
 else:
     IsWinEleven = False
