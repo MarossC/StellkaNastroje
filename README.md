@@ -26,8 +26,13 @@
 ##### Pouziti vypada takto:
 https://github.com/MarossC/StellkaNastroje/assets/96071677/989b46ef-136a-4a4b-aac9-eac74ede65c1
 
+##### Pokud si chces vytvorit zastupce na tento otevirac, dej do sve slozky se Stellarkou [tento script](Otevirac/zastupceNaOtevirac.py), a postupuj podle videa níže.
+https://github.com/MarossC/StellkaNastroje/assets/96071677/2ff65d7a-e613-4b90-980c-db0ac3745f1b
+
 
 ##### Zadat pouze cisla, nebo jen zmacknout enter.
+
+
 
 ---
 Pokud zde neco chybi, staci napsat ve hre PMko na "Maross"
