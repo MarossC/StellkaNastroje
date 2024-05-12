@@ -34,6 +34,11 @@ s_width = user32.GetSystemMetrics(0)
 s_height = user32.GetSystemMetrics(1)
 
 
+def interpreter(line):
+    proc = subprocess.Popen(line, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    out, err = proc.communicate()
+    return out.decode()
+
 def setWidth(fWidth):
     with open(gameconfig, 'r+') as f:
         filedata = f.read()
@@ -53,6 +58,17 @@ def setHeight(fHeight):
         f.seek(0)
         f.write(newdata)
         f.close()
+
+# - - - - Windows 10/11 detekce
+
+wmic = interpreter("wmic os get name")
+wmicos = wmic.split("\n")
+version = wmicos[1].split(" ")
+
+if version[2] == 11:
+    IsWinEleven = True
+else:
+    IsWinEleven = False
 
 # - - - - Inputy
 
@@ -133,7 +149,10 @@ if pocetCele > 0:
 # - - Trictvrtecni okna
 if pocetTrictvrt > 0:
     setWidth(round(s_width * 0.75))
-    setHeight(s_height - 80)
+    if IsWinEleven:
+        setHeight(s_height - 80)
+    else:
+        setHeight(s_height - 70)
 
     while pocetTrictvrt > 0:
         subprocess.Popen([gameexe])
@@ -144,7 +163,10 @@ if pocetTrictvrt > 0:
 # - - Polovicni okno
 if pocetPulka > 0:
     setWidth(s_width / 2)
-    setHeight(s_height - 80)
+    if IsWinEleven:
+        setHeight(s_height - 80)
+    else:
+        setHeight(s_height - 70)
 
     while pocetPulka > 0:
         subprocess.Popen([gameexe])
@@ -155,7 +177,7 @@ if pocetPulka > 0:
 # - - Normalni Kopacske okno
 if pocetMining > 0:
     setWidth(s_width / 2)
-    setHeight((s_height - 110) / 2)
+    setHeight((s_height - 90) / 2)
 
     while pocetMining > 0:
         subprocess.Popen([gameexe])
