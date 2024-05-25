@@ -17,6 +17,8 @@ if not is_admin:
     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
     sys.exit()
 
+
+config = 'mconfig.cfg'
 gameexe = 'start.exe'
 gameconfig = 'settings.cfg'
 
@@ -50,6 +52,8 @@ def setWidth(fWidth):
         f.write(newdata)
         f.close()
 
+
+
 def setHeight(fHeight):
     with open(gameconfig, 'r+') as f:
         filedata = f.read()
@@ -59,6 +63,7 @@ def setHeight(fHeight):
         f.seek(0)
         f.write(newdata)
         f.close()
+
 
 # - - - - Windows 10/11 detekce
 wmic = interpreter("wmic os get name")
@@ -71,69 +76,99 @@ else:
     IsWinEleven = False
 
 # - - - - Inputy
+print("Stellaria Otevirac [Version 69.420.6489918.89179]")
+print("(c) Maros Corporation. All rights reserved.")
+print("\n\n")
 
+# - - config check
+global bConfig, pocetCele, pocetTrictvrt, pocetPulka, pocetMining, pocetMicro
+bConfig = False
+if os.path.isfile(config):
+    f = open(config, 'r')
+    line = f.readlines()
+    f.close()
+    while True:
+        inputConfig = input("Chceš načíst staré okna? (y/n): ")
+        if inputConfig == "y" or inputConfig == "Y":
+            bConfig = True
+            pocetCele = int(line[0])
+            pocetTrictvrt = int(line[1])
+            pocetPulka = int(line[2])
+            pocetMining = int(line[3])
+            pocetMicro = int(line[4])
+            break
+        elif inputConfig == "n" or inputConfig == "N":
+            bConfig = False
+            break
+        else:
+            print("Nezadal jsi Y nebo N.\n")
+
+print("\n")
 # - - Cele okna
-while True:
-    inputCele = input("Pocet celych oken (100%/100%): ")
-    if inputCele == "":
-        inputCele = 0
-    try:
-        pocetCele = int(inputCele)
-        break
-    except ValueError:
-        print("Zkus to znova, nezadal jsi cislo.\n")
+if not bConfig:
+    while True:
+        inputCele = input("Pocet celych oken (100%/100%): ")
+        if inputCele == "":
+            inputCele = 0
+        try:
+            pocetCele = int(inputCele)
+            break
+        except ValueError:
+            print("Zkus to znova, nezadal jsi cislo.\n")
 
-# - - Trictvrtecni okna
+    # - - Trictvrtecni okna
 
-while True:
-    inputTrictvrt = input("Pocet trictvrtecnich oken (100%/75%): ")
-    if inputTrictvrt == "":
-        inputTrictvrt = 0
-    try:
-        pocetTrictvrt = int(inputTrictvrt)
-        break
-    except ValueError:
-        print("Zkus to znova, nezadal jsi cislo.\n")
+    while True:
+        inputTrictvrt = input("Pocet trictvrtecnich oken (100%/75%): ")
+        if inputTrictvrt == "":
+            inputTrictvrt = 0
+        try:
+            pocetTrictvrt = int(inputTrictvrt)
+            break
+        except ValueError:
+            print("Zkus to znova, nezadal jsi cislo.\n")
 
-# - - Polovicni okna
+    # - - Polovicni okna
 
-while True:
-    inputPulka = input("Pocet polovicnich oken (100%/50%): ")
-    if inputPulka == "":
-        inputPulka = 0
-    try:
-        pocetPulka = int(inputPulka)
-        break
-    except ValueError:
-        print("Zkus to znova, nezadal jsi cislo.\n")
+    while True:
+        inputPulka = input("Pocet polovicnich oken (100%/50%): ")
+        if inputPulka == "":
+            inputPulka = 0
+        try:
+            pocetPulka = int(inputPulka)
+            break
+        except ValueError:
+            print("Zkus to znova, nezadal jsi cislo.\n")
 
-# - - Normal kopaci okna
+    # - - Normal kopaci okna
 
-while True:
-    inputMining = input("Pocet normal kopacich oken (50%/50%): ")
-    if inputMining == "":
-        inputMining = 0
-    try:
-        pocetMining = int(inputMining)
-        break
-    except ValueError:
-        print("Zkus to znova, nezadal jsi cislo.\n")
+    while True:
+        inputMining = input("Pocet normal kopacich oken (50%/50%): ")
+        if inputMining == "":
+            inputMining = 0
+        try:
+            pocetMining = int(inputMining)
+            break
+        except ValueError:
+            print("Zkus to znova, nezadal jsi cislo.\n")
 
-# - - Mikro kopaci okna
+    # - - Mikro kopaci okna
 
-while True:
-    inputMicro = input("Pocet malych kopacich oken (50%/25%): ")
-    if inputMicro == "":
-        inputMicro = 0
-    try:
-        pocetMicro = int(inputMicro)
-        break
-    except ValueError:
-        print("Zkus to znova, nezadal jsi cislo.\n")
+    while True:
+        inputMicro = input("Pocet malych kopacich oken (50%/25%): ")
+        if inputMicro == "":
+            inputMicro = 0
+        try:
+            pocetMicro = int(inputMicro)
+            break
+        except ValueError:
+            print("Zkus to znova, nezadal jsi cislo.\n")
 
 # - - - - Otevirani
 
 print("Pockej nez se otevrou okna.")
+
+# - 30px bar okna, 50px W11 taskbar, 40px W10 taskbar
 
 # - - Cele okna
 if pocetCele > 0:
@@ -177,7 +212,10 @@ if pocetPulka > 0:
 # - - Normalni Kopacske okno
 if pocetMining > 0:
     setWidth(s_width / 2)
-    setHeight((s_height - 90) / 2)
+    if IsWinEleven:
+        setHeight((s_height - 110) / 2)
+    else:
+        setHeight((s_height - 100) / 2)    
 
     while pocetMining > 0:
         subprocess.Popen([gameexe])
@@ -188,14 +226,21 @@ if pocetMining > 0:
 # - - Micro Kopacske okno
 if pocetMicro > 0:
     setWidth(s_width / 4)
-    setHeight((s_height - 90) / 2)
+    if IsWinEleven:
+        setHeight((s_height - 110) / 2)
+    else:
+        setHeight((s_height - 100) / 2)  
     
     while pocetMicro > 0:
         subprocess.Popen([gameexe])
         pocetMicro = pocetMicro - 1
 
-print("\n")
-print("####################")
-print("#### By  Maross ####")
-print("####################")
-time.sleep(2)
+
+f = open(config, 'w')
+f.write(str(pocetCele) + "\n")
+f.write(str(pocetTrictvrt) + "\n")
+f.write(str(pocetPulka) + "\n")
+f.write(str(pocetMining) + "\n")
+f.write(str(pocetMicro) + "\n")
+f.close()
+
