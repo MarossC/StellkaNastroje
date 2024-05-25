@@ -168,6 +168,14 @@ if not bConfig:
 
 print("Pockej nez se otevrou okna.")
 
+f = open(config, 'w')
+f.write(str(pocetCele) + "\n")
+f.write(str(pocetTrictvrt) + "\n")
+f.write(str(pocetPulka) + "\n")
+f.write(str(pocetMining) + "\n")
+f.write(str(pocetMicro) + "\n")
+f.close()
+
 # - 30px bar okna, 50px W11 taskbar, 40px W10 taskbar
 
 # - - Cele okna
@@ -183,11 +191,11 @@ if pocetCele > 0:
 
 # - - Trictvrtecni okna
 if pocetTrictvrt > 0:
-    setWidth(round(s_width * 0.75))
+    setWidth(int(round(s_width * 0.75)))
     if IsWinEleven:
-        setHeight(s_height - 80)
+        setHeight(int(s_height - 80))
     else:
-        setHeight(s_height - 70)
+        setHeight(int(s_height - 70))
 
     while pocetTrictvrt > 0:
         subprocess.Popen([gameexe])
@@ -197,11 +205,11 @@ if pocetTrictvrt > 0:
 
 # - - Polovicni okno
 if pocetPulka > 0:
-    setWidth(s_width / 2)
+    setWidth(int(s_width / 2))
     if IsWinEleven:
-        setHeight(s_height - 80)
+        setHeight(int(s_height - 80))
     else:
-        setHeight(s_height - 70)
+        setHeight(int(s_height - 70))
 
     while pocetPulka > 0:
         subprocess.Popen([gameexe])
@@ -211,11 +219,11 @@ if pocetPulka > 0:
 
 # - - Normalni Kopacske okno
 if pocetMining > 0:
-    setWidth(s_width / 2)
+    setWidth(int(s_width / 2))
     if IsWinEleven:
-        setHeight((s_height - 110) / 2)
+        setHeight(int((s_height - 110) / 2))
     else:
-        setHeight((s_height - 100) / 2)    
+        setHeight(int((s_height - 100) / 2))    
 
     while pocetMining > 0:
         subprocess.Popen([gameexe])
@@ -225,22 +233,17 @@ if pocetMining > 0:
 
 # - - Micro Kopacske okno
 if pocetMicro > 0:
-    setWidth(s_width / 4)
+    setWidth(int(s_width / 4))
     if IsWinEleven:
-        setHeight((s_height - 110) / 2)
+        setHeight(int((s_height - 110) / 2))
     else:
-        setHeight((s_height - 100) / 2)  
+        setHeight(int((s_height - 100) / 2)) 
     
     while pocetMicro > 0:
         subprocess.Popen([gameexe])
         pocetMicro = pocetMicro - 1
 
 
-f = open(config, 'w')
-f.write(str(pocetCele) + "\n")
-f.write(str(pocetTrictvrt) + "\n")
-f.write(str(pocetPulka) + "\n")
-f.write(str(pocetMining) + "\n")
-f.write(str(pocetMicro) + "\n")
-f.close()
+
+
 
